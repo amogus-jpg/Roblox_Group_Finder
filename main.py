@@ -3,7 +3,6 @@ import os
 import pygame
 import random
 import time
-import os
 
 def clear_console():
     # Очистка консоли для разных операционных систем
@@ -94,9 +93,9 @@ def search_groups():
             group_name = group_info["name"]
             member_count = group_info["memberCount"]
             allowed = group_info["publicEntryAllowed"]
-            is_locked = group_info["isLocked"]
+            owner = group_info["owner"]
 
-            if member_count == 0 and allowed and not is_locked:
+            if not member_count == 0 and allowed and owner == 'null':
                 print(f"Найдена группа {group_id} ({group_name})!\nЗаписано в saved_ids.txt")
                 play_notification_sound()
                 save_to_file(group_number, group_name, group_id, file_path)
